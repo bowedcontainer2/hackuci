@@ -3,13 +3,18 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+  animation: App-logo-spin infinite 10s linear;
   height: 40vmin;
   pointer-events: none;
 }
 
+#grad {
+  background-image: linear-gradient(#373B44, #4286f4);
+}
+
 .App-header {
-  background-color: #282c34;
+
+  background-image: linear-gradient(to right, darkblue, black);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -21,6 +26,10 @@
 
 .App-link {
   color: #61dafb;
+}
+
+#button {
+
 }
 
 @keyframes App-logo-spin {
