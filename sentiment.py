@@ -55,7 +55,7 @@ if __name__ == '__main__':
     for song in songs:
         
 
-        lyrics = main()
+        lyrics = main(song, artist)
         text_to_sentiment(lyrics)
 
 
