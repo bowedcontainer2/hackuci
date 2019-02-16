@@ -42,9 +42,9 @@ input#search-bar{
 .search-icon{
   position: relative;
   float: right;
-  width: 75px;
-  height: 75px;
-  top: -62px;
+  width: 49px;
+  height: 47px;
+  top: -47px;
   right: -45px;
 }
 
@@ -60,9 +60,9 @@ input#search-bar{
   background: linear-gradient(270deg, #aa4b6b, #6b6b83, #3b8d99);
   background-size: 600% 600%;
 
-  -webkit-animation: AnimationOne 30s ease infinite;
-  -moz-animation: AnimationTwo 30s ease infinite;
-  animation: AnimationThree 30s ease infinite;
+  -webkit-animation: AnimationOne 10s ease infinite;
+  -moz-animation: AnimationTwo 10s ease infinite;
+  animation: AnimationThree 10s ease infinite;
 
 
   min-height: 100vh;
