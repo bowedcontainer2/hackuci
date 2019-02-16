@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+// import MainForm from './MainForm.js'
+
 class App extends Component {
   render() {
     return (
@@ -11,14 +13,6 @@ class App extends Component {
             How are you feeling?
           </h1>
           <h2>Tell us your mood and we will choose the best drake song for you!</h2>
-          <form>
-            <label>
-              Your mood in one word:
-              <input type="text" name="name" />
-            </label>
-            <input type="submit" id="button" value="Submit" />
-          </form>
-
 
         </header>
       </div>
