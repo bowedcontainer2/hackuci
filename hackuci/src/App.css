@@ -8,13 +8,10 @@
   pointer-events: none;
 }
 
-#grad {
-  background-image: linear-gradient(#373B44, #4286f4);
-}
 
 .App-header {
 
-  background-image: linear-gradient(to right, darkblue, black);
+  background-image: linear-gradient(#aa4b6b, #6b6b83, #3b8d99);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
