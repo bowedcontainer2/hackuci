@@ -14,7 +14,8 @@ class App extends Component {
         super(props);
         this.state = {
             songRecieved: false,
-            songName: ''
+            songName: '',
+            data: []
         };
     }
 
@@ -27,8 +28,8 @@ class App extends Component {
         return response.json();
         }).then(data => {
         // Work with JSON data here
-        //this.setState({songName: data.Song});
-        console.log(data["Song"]);
+        console.log(data[0].Song);
+        this.setState({songName: data[0]});
 
         }).catch(err => {
         // Do something for an error here
@@ -42,10 +43,10 @@ class App extends Component {
           <h1>
             How are you feeling?
           </h1>
-          <h2>Tell us your mood and we will choose the best drake song for you!</h2>
+          <h2>Tell us your mood and we will choose the best Kendrick Lamar song for you!</h2>
           <NameForm songCallBack={this.myCallback} phraseCallback={this.phraseCallback} />
 
-          <SongDisplay isSongReturned={this.state.songRecieved}/>
+          <SongDisplay isSongReturned={this.state.songRecieved} songNameOne={this.state.songName.Song} />
         </header>
       </div>
     );
@@ -53,57 +54,23 @@ class App extends Component {
 }
 
 
-function spotifySearchChain() {
-
-  let songName = "Nonstop dude", artist = "Drake";
-
-    songName = songName.split(" ")
-    let songArray = new Array();
-    for(var i = 0; i < songName.length; i++) {
-      songArray.push(songName[i]);
-      if( i != songName.length - 1) {
-        songArray.push(" ");
-      }
-    }
-
-    var spotifyChain = "";
-
-    for(var i = 0; i < songArray.length; i++) {
-      spotifyChain += songArray[i];
-      if(i < songArray.length - 1) {
-        spotifyChain += "%20";
-      }
-    }
-    return spotifyChain;
-
-}
-
 
 function SongVisual(props) {
-  var name = spotifySearchChain();
-  var nameTest = "nonstop%20drake";
-
-  //document.getElementById("link").setAttribute("href", nameTest);
-
-   var a = document.createElement('a');
-   var linkText = document.createTextNode("Spotify");
-   a.appendChild(linkText);
-   a.title = "Spotify";
-   a.href = "https://open.spotify.com/search/results/drake%20nonstop";
-
+  // var name = spotifySearchChain();
 
   return <div>
-      <h1> is the best song for you right now.</h1>
+      <h1>{props.songNameTwo} by Kendrick Lamar is the best song for you right now.</h1>
 
-      <h2>Listen to it now on <a href={"https://open.spotify.com/search/" + name }>Spotify.</a></h2>
+      <h2>Listen to it now on <a href={"https://open.spotify.com/search/" }>Spotify.</a></h2>
 
     </div>;
 }
 
 function SongDisplay(props) {
   const isSongReturned = props.isSongReturned;
+  const songNameOne = props.songNameOne;
   if(isSongReturned) {
-    return <SongVisual/>;
+    return <SongVisual songNameTwo={songNameOne} />;
   }
   else {
    return <p></p>;
