@@ -21,6 +21,10 @@ class App extends Component {
       this.setState({songRecieved: dataFromForm});
     }
 
+    phraseCallback = (phrase) => {
+      
+    }
+
   render() {
     return (
       <div className="App">
@@ -29,9 +33,9 @@ class App extends Component {
             How are you feeling?
           </h1>
           <h2>Tell us your mood and we will choose the best drake song for you!</h2>
-          <NameForm songCallBack={this.myCallback} />
+          <NameForm songCallBack={this.myCallback} phraseCallback={this.phraseCallback} />
 
-          <SongDisplay isSongReturned={this.state.songRecieved}/>
+          <SongDisplay id="linker" isSongReturned={this.state.songRecieved}/>
         </header>
       </div>
     );
@@ -69,17 +73,17 @@ function SongVisual(props) {
   var name = spotifySearchChain();
   var nameTest = "nonstop%20drake";
 
-  document.getElementById("link").setAttribute("href", nameTest);
-  // 
-  // var link = document.createElement('a');
-  // var linkText = document.createTextNode("Spotify");
-  // a.appendChild(linkText);
-  // a.title = "my title text";
-  // a.href = "http://example.com";
-  // document.body.appendChild(a);
+  //document.getElementById("link").setAttribute("href", nameTest);
+
+   var a = document.createElement('a');
+   var linkText = document.createTextNode("Spotify");
+   a.appendChild(linkText);
+   a.title = "Spotify";
+   a.href = "https://open.spotify.com/search/results/drake%20nonstop";
+   document.getElementById("linker").appendChild(a);
 
   return <div>
-      <h1>  is the best song for you right now.</h1>
+      <h1> is the best song for you right now.</h1>
 
       <h2>Listen to it now on</h2>
 
@@ -117,6 +121,7 @@ class NameForm extends React.Component {
       alert('A phrase was submitted: ' + this.state.value);
       const songSentAndRecieved = true;
       this.props.songCallBack(songSentAndRecieved);
+      this.props.phraseCallback(this.state.value);
 
     }
     else {
