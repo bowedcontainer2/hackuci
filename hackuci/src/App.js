@@ -74,7 +74,7 @@ function SongDisplay(props) {
   while( phraseRecieved && !isSongReturned ) {
     return <div>
       <h3>Fetching your perfect song...</h3>
-      <Spinner name="ball-grid-pulse" color="white" />
+      <Spinner id="spinner" name="ball-grid-pulse" color="white" />
       </div>;
   }
   if(isSongReturned) {
