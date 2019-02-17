@@ -41,7 +41,7 @@ class App extends Component {
 
 function spotifySearchChain() {
 
-  let songName = "Nonstop", artist = "Drake";
+  let songName = "Nonstop dude", artist = "Drake";
 
     songName = songName.split(" ")
     let songArray = new Array();
@@ -60,19 +60,29 @@ function spotifySearchChain() {
         spotifyChain += "%20";
       }
     }
-
     return spotifyChain;
 
 }
 
-function SongVisual(props) {
 
-  // var spotify = ("https://open.spotify.com/search/results/" + spotifySearchChain());
-  //  document.getElementById("link").setAttribute("href",spotify);
+function SongVisual(props) {
+  var name = spotifySearchChain();
+  var nameTest = "nonstop%20drake";
+
+  document.getElementById("link").setAttribute("href", nameTest);
+  // 
+  // var link = document.createElement('a');
+  // var linkText = document.createTextNode("Spotify");
+  // a.appendChild(linkText);
+  // a.title = "my title text";
+  // a.href = "http://example.com";
+  // document.body.appendChild(a);
 
   return <div>
-      <h1> is the best song for you right now.</h1>
-      <h2>Listen to it now on <a href="spotify.com">Spotify</a></h2>
+      <h1>  is the best song for you right now.</h1>
+
+      <h2>Listen to it now on</h2>
+
     </div>;
 }
 
