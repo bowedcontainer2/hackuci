@@ -43,11 +43,11 @@ class App extends Component {
           <h1>
             How are you feeling?
           </h1>
-          <h2>Tell us your mood and we will choose the best Kendrick Lamar song for you!</h2>
+          <h2>Tell us your mood and we will choose the best Kendrick Lamar song for you!</h2><p id="small">(More artists added in the near future!)</p>
           <NameForm songCallBack={this.myCallback} phraseCallback={this.phraseCallback} />
 
           <SongDisplay phraseRecieved={this.state.phraseRecieved} isSongReturned={this.state.songRecieved} songNameOne={this.state.songName} />
-
+          <p id="smaller"> Made with ♥, React.js, and Python</p>
         </header>
       </div>
     );
@@ -56,12 +56,10 @@ class App extends Component {
 
 
 function SongVisual(props) {
-
-
   return <div>
       <h1>{props.songNameTwo} by Kendrick Lamar is the best song for you right now.</h1>
 
-      <h2>Listen to it now on <a href={"https://open.spotify.com/search/" }>Spotify.</a></h2>
+      <h2>Listen to it now on <a href={"https://open.spotify.com/"}>Spotify.</a></h2>
 
     </div>;
 }
@@ -103,7 +101,7 @@ class NameForm extends React.Component {
 
   handleSubmit(event, props) {
     if(this.state.value !== '') {
-      // alert('A phrase was submitted: ' + this.state.value);
+
       const sentPhrase = true;
       this.props.songCallBack(sentPhrase);
       this.props.phraseCallback(this.state.value);
