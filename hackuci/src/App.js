@@ -27,8 +27,8 @@ class App extends Component {
         return response.json();
         }).then(data => {
         // Work with JSON data here
-        this.setState({songName: data[0]["Song"]});
-        console.log(this.state.songName);
+        //this.setState({songName: data.Song});
+        console.log(data["Song"]);
 
         }).catch(err => {
         // Do something for an error here
