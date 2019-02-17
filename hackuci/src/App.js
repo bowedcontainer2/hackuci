@@ -7,12 +7,12 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faSearch)
 
-//import MainForm from './MainForm.js'
 
 class App extends Component {
   constructor(props) {
         super(props);
         this.state = {
+            phraseRecieved: false,
             songRecieved: false,
             songName: '',
             data: []
@@ -20,7 +20,7 @@ class App extends Component {
     }
 
     myCallback = (dataFromForm) => {
-      this.setState({songRecieved: dataFromForm});
+      this.setState({phraseRecieved: dataFromForm});
     }
 
     phraseCallback = (phrase) => {
@@ -29,7 +29,7 @@ class App extends Component {
         }).then(data => {
         // Work with JSON data here
         console.log(data[0].Song);
-        this.setState({songName: data[0]});
+        this.setState({songName: data[0].Song, songRecieved: true});
 
         }).catch(err => {
         // Do something for an error here
@@ -46,7 +46,8 @@ class App extends Component {
           <h2>Tell us your mood and we will choose the best Kendrick Lamar song for you!</h2>
           <NameForm songCallBack={this.myCallback} phraseCallback={this.phraseCallback} />
 
-          <SongDisplay isSongReturned={this.state.songRecieved} songNameOne={this.state.songName.Song} />
+          <SongDisplay phraseRecieved={this.state.phraseRecieved} isSongReturned={this.state.songRecieved} songNameOne={this.state.songName} />
+
         </header>
       </div>
     );
@@ -54,9 +55,8 @@ class App extends Component {
 }
 
 
-
 function SongVisual(props) {
-  // var name = spotifySearchChain();
+
 
   return <div>
       <h1>{props.songNameTwo} by Kendrick Lamar is the best song for you right now.</h1>
@@ -67,13 +67,21 @@ function SongVisual(props) {
 }
 
 function SongDisplay(props) {
+  var Spinner = require('react-spinkit');
   const isSongReturned = props.isSongReturned;
+  const phraseRecieved = props.phraseRecieved;
   const songNameOne = props.songNameOne;
+  while( phraseRecieved && !isSongReturned ) {
+    return <div>
+      <h3>Fetching your perfect song...</h3>
+      <Spinner name="ball-grid-pulse" color="white" />
+      </div>;
+  }
   if(isSongReturned) {
-    return <SongVisual songNameTwo={songNameOne} />;
+   return <SongVisual songNameTwo={songNameOne} />;
   }
   else {
-   return <p></p>;
+    return <h5>We use Sentiment analysis models and lyric APIs to give you the most relevant song to your mood!</h5>;
   }
 }
 
@@ -94,12 +102,11 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event, props) {
-    if(this.state.value != '') {
-      alert('A phrase was submitted: ' + this.state.value);
-      const songSentAndRecieved = true;
-      this.props.songCallBack(songSentAndRecieved);
+    if(this.state.value !== '') {
+      // alert('A phrase was submitted: ' + this.state.value);
+      const sentPhrase = true;
+      this.props.songCallBack(sentPhrase);
       this.props.phraseCallback(this.state.value);
-
     }
     else {
       alert('Please Enter a Valid Phrase.')
