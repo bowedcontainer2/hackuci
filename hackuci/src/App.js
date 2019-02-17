@@ -13,7 +13,8 @@ class App extends Component {
   constructor(props) {
         super(props);
         this.state = {
-            songRecieved: false
+            songRecieved: false,
+            songName: ''
         };
     }
 
@@ -22,7 +23,16 @@ class App extends Component {
     }
 
     phraseCallback = (phrase) => {
-      
+      fetch('http://127.0.0.1:5000?mood='+ phrase).then(response => {
+        return response.json();
+        }).then(data => {
+        // Work with JSON data here
+        this.setState({songName: data[0]["Song"]});
+        console.log(this.state.songName);
+
+        }).catch(err => {
+        // Do something for an error here
+        });
     }
 
   render() {
@@ -35,7 +45,7 @@ class App extends Component {
           <h2>Tell us your mood and we will choose the best drake song for you!</h2>
           <NameForm songCallBack={this.myCallback} phraseCallback={this.phraseCallback} />
 
-          <SongDisplay id="linker" isSongReturned={this.state.songRecieved}/>
+          <SongDisplay isSongReturned={this.state.songRecieved}/>
         </header>
       </div>
     );
@@ -73,7 +83,6 @@ function SongVisual(props) {
   var name = spotifySearchChain();
   var nameTest = "nonstop%20drake";
 
-<<<<<<< HEAD
   //document.getElementById("link").setAttribute("href", nameTest);
 
    var a = document.createElement('a');
@@ -81,26 +90,14 @@ function SongVisual(props) {
    a.appendChild(linkText);
    a.title = "Spotify";
    a.href = "https://open.spotify.com/search/results/drake%20nonstop";
-   document.getElementById("linker").appendChild(a);
+
 
   return <div>
       <h1> is the best song for you right now.</h1>
 
-      <h2>Listen to it now on</h2>
+      <h2>Listen to it now on <a href={"https://open.spotify.com/search/" + name }>Spotify.</a></h2>
 
     </div>;
-=======
-  // document.getElementById("link").setAttribute("href", nameTest);
-  // 
-  // var link = document.createElement('a');
-  // var linkText = document.createTextNode("Spotify");
-  // a.appendChild(linkText);
-  // a.title = "my title text";
-  // a.href = "http://example.com";
-  // document.body.appendChild(a);
-
-  return <div><h1>  is the best song for you right now.</h1><h2>Listen to it now on</h2></div>;
->>>>>>> 64fe884f47d3b9cf137e64be90caaca0f613c7bb
 }
 
 function SongDisplay(props) {

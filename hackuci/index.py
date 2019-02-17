@@ -1,8 +1,12 @@
 from flask import Flask, jsonify, json, request
+from flask_cors import CORS
+
 import sentiment
 app = Flask(__name__)
+CORS(app)
 
-@app.route("/get_mood", methods = ['GET'])
+@app.route("/", methods = ['GET'])
+
 def index():
 	mood = request.args.get('mood')
 	song_polarity_list = []
@@ -17,7 +21,7 @@ def index():
 
 			# convert to json data
 			# jsonStr = json.dumps(song_polarity_list)
-		except Exception as e: 
+		except Exception as e:
 			print(e)
 
 	return jsonify(song_polarity_list)
