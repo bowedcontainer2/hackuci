@@ -63,8 +63,8 @@ def main(song, artist_name):
         #print(new_l)
         return new_lyrics
 
-def input_shit():
-    user_input = input("How are you feeling?")
+def input_shit(feeling):
+    user_input = feeling
     answer = text_to_sentiment(user_input)
     print(answer)
      
@@ -79,6 +79,7 @@ def input_shit():
     key, value = min(song_score.items(), key=lambda kv : abs(kv[1] - answer))
 
     print(key)
+    return key
 
 
 def text_to_sentiment(lyrics):
@@ -87,7 +88,7 @@ def text_to_sentiment(lyrics):
     return l.sentiment.polarity
 
 
-if __name__ == '__main__':
-    input_shit()
+# if __name__ == '__main__':
+#     input_shit()
 
     

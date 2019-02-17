@@ -73,6 +73,7 @@ function SongVisual(props) {
   var name = spotifySearchChain();
   var nameTest = "nonstop%20drake";
 
+<<<<<<< HEAD
   //document.getElementById("link").setAttribute("href", nameTest);
 
    var a = document.createElement('a');
@@ -88,6 +89,18 @@ function SongVisual(props) {
       <h2>Listen to it now on</h2>
 
     </div>;
+=======
+  // document.getElementById("link").setAttribute("href", nameTest);
+  // 
+  // var link = document.createElement('a');
+  // var linkText = document.createTextNode("Spotify");
+  // a.appendChild(linkText);
+  // a.title = "my title text";
+  // a.href = "http://example.com";
+  // document.body.appendChild(a);
+
+  return <div><h1>  is the best song for you right now.</h1><h2>Listen to it now on</h2></div>;
+>>>>>>> 64fe884f47d3b9cf137e64be90caaca0f613c7bb
 }
 
 function SongDisplay(props) {

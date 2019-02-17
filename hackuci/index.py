@@ -2,23 +2,18 @@ from flask import Flask, jsonify, json, request
 import sentiment
 app = Flask(__name__)
 
-@app.route("/", methods = ['GET'])
+@app.route("/get_mood", methods = ['GET'])
 def index():
-	artist = 'Kendrick Lamar'
-	songs = ['BLOOD.', ' DNA', 'YAH', 'ELEMENT.', 'FEEL.', 'LOYALTY.', 'PRIDE',
-		'HUMBLE.', 'LUST.', 'LOVE.', 'XXX.', 'FEAR.', 'GOD.', 'DUCKWORTH']
+	mood = request.args.get('mood')
 	song_polarity_list = []
 	if request.method == 'GET':
 		try:
-			for song in songs:
-				lyrics = sentiment.main(song, artist)
+			song = sentiment.input_shit(mood)
+			empDict = {
+			'Song': song
+			}
 
-				empDict = {
-				'Polarity': sentiment.text_to_sentiment(lyrics),
-				'Song': song
-				}
-
-				song_polarity_list.append(empDict)
+			song_polarity_list.append(empDict)
 
 			# convert to json data
 			# jsonStr = json.dumps(song_polarity_list)
